@@ -13,3 +13,11 @@
 #### --> Load Saved Model from Disk
 #### --> Model Accuracy
 
+## Steps to deploy:
+
+#### Build Docker image
+    $ docker build -t imdb_sentiment:0.0.1 .
+ 
+### Start the seldon-core model
+    $ docker run --env-file dev.properties -p 5000:5000 -it imdb_sentiment:0.0.1
+    

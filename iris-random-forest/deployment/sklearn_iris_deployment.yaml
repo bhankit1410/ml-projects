@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iris-rf
+spec:
+  restartPolicy: Never
+  containers:
+  - name: iris-rf
+    image: iris_rf:0.0.1
+
+---
+apiVersion:  v1
+kind: Service
+metadata:
+  name: iris-svc
+  labels:
+    APP: iris-rf
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+  selector:
+    app: iris-rf
