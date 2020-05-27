@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: iris-rf-ingress
+  namespace: seldon
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: seldon-iris-rf-example-classifier
+          servicePort: 9090

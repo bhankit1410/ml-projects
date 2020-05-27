@@ -1,17 +1,20 @@
-apiVersion: machinelearning.seldon.io/v1alpha2
+apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment
 metadata:
-  name: iris-model
-  namespace: model-namespace
+  name: seldon-iris-rf
 spec:
-  name: iris
+  name: test-deployment
   predictors:
   - componentSpecs:
     - spec:
-      containers:
-      - name: classifier
-        image: iris_rf:0.0.1
-  - graph:
+        containers:
+        - image: iris_rf:0.0.1
+          name: classifier
+    graph:
+      children: []
+      endpoint:
+        type: REST
       name: classifier
-    name: default
+      type: MODEL
+    name: example
     replicas: 1
